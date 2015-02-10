@@ -4,20 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId></groupId>
-    <artifactId></artifactId>
+    <groupId>intellimate</groupId>
+    <artifactId>debugaddon</artifactId>
     <packaging>jar</packaging>
-    <version></version>
-    <name></name>
+    <version>1.0</version>
+    <name>Intellimate</name>
 
     <properties>
-        <plugin.id></plugin.id>
+        <plugin.id>intellimate.izou.debugaddon</plugin.id>
         <plugin.class>path.to.the.ZipFileManager</plugin.class>
-        <plugin.version></plugin.version>
-        <plugin.provider></plugin.provider>
+        <plugin.version>1.0</plugin.version>
+        <plugin.provider>intellimate</plugin.provider>
         <plugin.dependencies />
-        <repo.name></repo.name>
-        <repo.owner></repo.owner>
+        <repo.name>intellimate.izou.debugaddon.DebugAddOn</repo.name>
+        <repo.owner>intellimate</repo.owner>
         <!-- github server corresponds to entry in ~/.m2/settings.xml -->
         <github.global.server>github</github.global.server>
     </properties>
