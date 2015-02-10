@@ -12,10 +12,11 @@
 
     <properties>
         <plugin.id>intellimate.izou.debugaddon</plugin.id>
-        <plugin.class>path.to.the.ZipFileManager</plugin.class>
+        <plugin.class>intellimate.izou.debugaddon.ZipFileManager</plugin.class>
         <plugin.version>1.0</plugin.version>
         <plugin.provider>intellimate</plugin.provider>
         <plugin.dependencies />
+
         <repo.name>intellimate.izou.debugaddon.DebugAddOn</repo.name>
         <repo.owner>intellimate</repo.owner>
         <!-- github server corresponds to entry in ~/.m2/settings.xml -->
