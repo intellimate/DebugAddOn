@@ -2,6 +2,10 @@ package intellimate.izou.debugaddon;
 
 import intellimate.izou.activator.Activator;
 import intellimate.izou.system.Context;
+import javazoom.jl.player.Player;
+
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * A basic activator for the debug addOn.
@@ -21,11 +25,23 @@ public class DebugActivator extends Activator {
         super(context);
     }
 
+    public void play(String dir) {
+        try{
+            InputStream fis = new URL(dir).openStream();
+            //FileInputStream fis = new FileInputStream(dir);
+            Player playMP3 = new Player(fis);
+            playMP3.play();
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+            System.out.println("Failed to play the file.");
+        }
+    }
+
     @Override
     public void activatorStarts() throws InterruptedException {
         while (true) {
-            // Logging at fatal level because logger ignores all levels below error
-            getContext().logger.getLogger().fatal("IZOU STATE: RUNNNING");
+            play("./lib/debugaddon-1.0/classes/beethoven.mp3");
             try {
                 Thread.sleep(60000);
             } catch (InterruptedException e) {
