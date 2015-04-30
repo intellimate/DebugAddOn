@@ -1,11 +1,7 @@
 package intellimate.izou.debugaddon;
 
-import intellimate.izou.activator.Activator;
-import intellimate.izou.system.Context;
-import javazoom.jl.player.Player;
-
-import java.io.InputStream;
-import java.net.URL;
+import org.intellimate.izou.sdk.Context;
+import org.intellimate.izou.sdk.activator.Activator;
 
 /**
  * A basic activator for the debug addOn.
@@ -22,41 +18,11 @@ public class DebugActivator extends Activator {
      * @param context The context of the addOn
      */
     public DebugActivator(Context context) {
-        super(context);
-    }
-
-    public void play(String dir) {
-        try{
-            InputStream fis = new URL(dir).openStream();
-            //FileInputStream fis = new FileInputStream(dir);
-            Player playMP3 = new Player(fis);
-            playMP3.play();
-        }
-        catch(Exception exc){
-            exc.printStackTrace();
-            System.out.println("Failed to play the file.");
-        }
+        super(context, ID);
     }
 
     @Override
-    public void activatorStarts() throws InterruptedException {
-        while (true) {
-            play("./lib/debugaddon-1.0/classes/beethoven.mp3");
-            try {
-                Thread.sleep(60000);
-            } catch (InterruptedException e) {
-                getContext().logger.getLogger().error("Thread.sleep error", e);
-            }
-        }
-    }
+    public void activatorStarts() {
 
-    @Override
-    public boolean terminated(Exception e) {
-        return false;
-    }
-
-    @Override
-    public String getID() {
-        return ID;
     }
 }
