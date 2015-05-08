@@ -1,4 +1,4 @@
-package intellimate.izou.debugaddon;
+package org.intellimate.izou.debugaddon;
 
 import ro.fortsoft.pf4j.PluginWrapper;
 

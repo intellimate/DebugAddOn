@@ -1,4 +1,4 @@
-package intellimate.izou.debugaddon;
+package org.intellimate.izou.debugaddon;
 
 import org.intellimate.izou.sdk.activator.Activator;
 import org.intellimate.izou.sdk.addon.AddOn;

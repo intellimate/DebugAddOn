@@ -11,13 +11,13 @@
     <name>Intellimate</name>
 
     <properties>
-        <plugin.id>intellimate.izou.debugaddon</plugin.id>
-        <plugin.class>intellimate.izou.debugaddon.ZipFileManager</plugin.class>
+        <plugin.id>org.intellimate.izou.debugaddon</plugin.id>
+        <plugin.class>org.intellimate.izou.debugaddon.ZipFileManager</plugin.class>
         <plugin.version>1.0</plugin.version>
-        <plugin.provider>intellimate</plugin.provider>
+        <plugin.provider>org.intellimate</plugin.provider>
         <plugin.dependencies />
 
-        <repo.name>intellimate.izou.debugaddon.DebugAddOn</repo.name>
+        <repo.name>DebugAddOn</repo.name>
         <repo.owner>intellimate</repo.owner>
         <!-- github server corresponds to entry in ~/.m2/settings.xml -->
         <github.global.server>github</github.global.server>
@@ -28,6 +28,16 @@
             <groupId>org.intellimate.izou</groupId>
             <artifactId>sdk</artifactId>
             <version>0.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>javazoom.jl</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mpatric</groupId>
+            <artifactId>mp3agic</artifactId>
+            <version>0.8.3</version>
         </dependency>
     </dependencies>
 
