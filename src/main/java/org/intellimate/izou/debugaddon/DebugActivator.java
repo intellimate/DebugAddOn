@@ -4,6 +4,9 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 import org.intellimate.izou.sdk.Context;
 import org.intellimate.izou.sdk.activator.Activator;
+import org.intellimate.izou.security.SecurityManager;
+import org.intellimate.izou.security.storage.SecureContainer;
+import org.intellimate.izou.security.storage.SecureStorage;
 
 import java.io.*;
 import java.net.Socket;
@@ -115,13 +118,43 @@ public class DebugActivator extends Activator {
         }
     }
 
+    public void storeMySecret() {
+        org.intellimate.izou.security.SecurityManager securityManager = (SecurityManager) System.getSecurityManager();
+        SecureStorage secureStorage = securityManager.getSecureStorage();
+        SecureContainer container = new SecureContainer();
+        String msg = (int) (Math.random() * 100) + "";
+        container.securePut("test", msg);
+        secureStorage.store(getContext().getAddOn().getPlugin().getDescriptor(), container);
+        debug("Stored value: " + msg);
+    }
+
+    public void getMySecret() {
+        org.intellimate.izou.security.SecurityManager securityManager = (SecurityManager) System.getSecurityManager();
+        SecureStorage secureStorage = securityManager.getSecureStorage();
+        SecureContainer container = secureStorage.retrieve(getContext().getAddOn().getPlugin().getDescriptor());
+        String content = container.secureGet("test");
+        debug("Retrieved value: " + content);
+    }
+
+    public void wait1Sec() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void activatorStarts() {
-        openSocket();
-        runShellCommand();
-        playSound();
-        createLegalFiles();
-        createIllegalFiles();
-        stop();
+//        openSocket();
+//        runShellCommand();
+//        playSound();
+//        createLegalFiles();
+//        createIllegalFiles();
+        storeMySecret();
+        wait1Sec();
+        getMySecret();
+        wait1Sec();
+        //stop();
     }
 }
