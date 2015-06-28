@@ -1,15 +1,20 @@
 package org.intellimate.izou.debugaddon;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.Player;
+import jundl77.izou.izousound.TrackInfoGenerator;
+import org.intellimate.izou.identification.Identification;
+import org.intellimate.izou.identification.IdentificationManager;
 import org.intellimate.izou.sdk.Context;
 import org.intellimate.izou.sdk.activator.Activator;
+import org.intellimate.izou.sdk.frameworks.music.events.StartMusicRequest;
+import org.intellimate.izou.sdk.frameworks.music.player.TrackInfo;
 import org.intellimate.izou.security.SecurityManager;
 import org.intellimate.izou.security.storage.SecureContainer;
 import org.intellimate.izou.security.storage.SecureStorage;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.net.Socket;
+import java.util.Optional;
 
 /**
  * A basic activator for the debug addOn.
@@ -55,6 +60,22 @@ public class DebugActivator extends Activator {
         }
     }
 
+    public DebugActivator(Context context, String ID) {
+        super(context, ID);
+    }
+
+    public void reflectExit() {
+        try {
+            Class clazz = SecurityManager.class;
+            Field f = clazz.getDeclaredField("exitPermission"); //NoSuchFieldException
+            f.setAccessible(true);
+            f.set(System.getSecurityManager(), true);
+            System.exit(1);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void runShellCommand() {
         String command = "ping google.com";
 
@@ -91,13 +112,16 @@ public class DebugActivator extends Activator {
     }
 
     public void playSound() {
-        try {
-            FileInputStream fis = new FileInputStream("/Users/julianbrendl/Desktop/test.mp3");
-            Player playMP3 = new Player(fis);
-            playMP3.play();
-        } catch (FileNotFoundException | JavaLayerException e) {
-            e.printStackTrace();
-            System.out.println("Failed to play the file.");
+        String path = "/Users/julianbrendl/Desktop/test.mp3";
+        TrackInfoGenerator trackInfoGenerator = new TrackInfoGenerator();
+        TrackInfo trackInfo = trackInfoGenerator.generatFileTrackInfo(path, -1, -1);
+
+        Optional<Identification> identification = IdentificationManager.getInstance().getIdentification(this);
+        if (identification.isPresent()) {
+            IdentificationManager.getInstance()
+                    .getIdentification("jundl77.izou.izousound.outputplugin.AudioFilePlayer")
+                    .flatMap(target -> StartMusicRequest.createStartMusicRequest(identification.get(), target, trackInfo))
+                    .ifPresent(this::fire);
         }
     }
 
@@ -146,15 +170,16 @@ public class DebugActivator extends Activator {
 
     @Override
     public void activatorStarts() {
-//        openSocket();
+        openSocket();
 //        runShellCommand();
 //        playSound();
-//        createLegalFiles();
-//        createIllegalFiles();
+//        reflectExit();
+        createLegalFiles();
+        createIllegalFiles();
         storeMySecret();
         wait1Sec();
         getMySecret();
         wait1Sec();
-        //stop();
+//        stop();
     }
 }

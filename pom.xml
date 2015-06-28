@@ -26,13 +26,13 @@
     <dependencies>
         <dependency>
             <groupId>org.intellimate.izou</groupId>
-            <artifactId>sdk</artifactId>
-            <version>[0.0, 2.0)</version>
+            <artifactId>izou</artifactId>
+            <version>1.11.6</version>
         </dependency>
         <dependency>
-            <groupId>javazoom.jl</groupId>
-            <artifactId>jlayer</artifactId>
-            <version>1.0.1</version>
+            <groupId>jundl77.izou.izousound</groupId>
+            <artifactId>izousound</artifactId>
+            <version>1.5.3</version>
         </dependency>
         <dependency>
             <groupId>com.mpatric</groupId>
