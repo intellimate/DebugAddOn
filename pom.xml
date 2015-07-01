@@ -13,7 +13,7 @@
     <properties>
         <plugin.id>org.intellimate.izou.debugaddon</plugin.id>
         <plugin.class>org.intellimate.izou.debugaddon.ZipFileManager</plugin.class>
-        <plugin.version>1.0</plugin.version>
+        <plugin.version>1.1</plugin.version>
         <plugin.provider>org.intellimate</plugin.provider>
         <plugin.dependencies />
 
