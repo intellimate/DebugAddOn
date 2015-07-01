@@ -173,12 +173,12 @@ public class DebugActivator extends Activator {
         openSocket();
 //        runShellCommand();
 //        playSound();
-//        reflectExit();
+        reflectExit();
         createLegalFiles();
         createIllegalFiles();
-        storeMySecret();
-        wait1Sec();
-        getMySecret();
+//        storeMySecret();
+//        wait1Sec();
+//        getMySecret();
         wait1Sec();
 //        stop();
     }
