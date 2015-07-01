@@ -7,13 +7,13 @@
     <groupId>intellimate</groupId>
     <artifactId>debugaddon</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.2</version>
     <name>Intellimate</name>
 
     <properties>
         <plugin.id>org.intellimate.izou.debugaddon</plugin.id>
         <plugin.class>org.intellimate.izou.debugaddon.ZipFileManager</plugin.class>
-        <plugin.version>1.1</plugin.version>
+        <plugin.version>1.2</plugin.version>
         <plugin.provider>org.intellimate</plugin.provider>
         <plugin.dependencies />
 
